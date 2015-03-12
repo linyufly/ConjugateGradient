@@ -29,7 +29,6 @@ void output_matrix(const SparseMatrix &matrix) {
 
 }
 
-
 void transpose_test() {
   printf("transpose_test {\n");
 
@@ -50,8 +49,33 @@ void transpose_test() {
   printf("} transpose_test\n");
 }
 
+void multiply_column_test() {
+  printf("multiply_column_test {\n");
+
+  SparseMatrix a(3, 2);
+  a.set_element(0, 1, 3.0);
+  a.set_element(0, 0, 2.0);
+  a.set_element(2, 1, -3.0);
+  a.set_element(2, 0, -2.0);
+
+  std::vector<double> column(2);
+  column[0] = 2.0;
+  column[1] = 3.0;
+
+  std::vector<double> result(3);
+  a.multiply_column(&column[0], &result[0]);
+
+  for (int r = 0; r < 3; r++) {
+    printf(" %lf", result[r]);
+  }
+  printf("\n");
+
+  printf("} multiply_column_test\n");
+}
+
 int main() {
   transpose_test();
+  multiply_column_test();
 
   return 0;
 }

@@ -17,6 +17,8 @@ class SparseMatrix {
     col_.resize(num_rows);
   }
 
+  void multiply_column(const double *column, double *result) const;
+
   void set_element(int row, int col, double value) {
     if (value == 0.0) {
       for (int c = 0; c < col_[row].size(); c++) {
