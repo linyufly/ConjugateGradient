@@ -11,6 +11,7 @@
 void conjugate_gradient_test() {
   printf("conjugate_gradient_test {\n");
 
+  // Test Case 1
   SparseMatrix a(4, 2);
   a.set_element(0, 0, 1.0);
   a.set_element(0, 1, 2.0);
@@ -42,6 +43,28 @@ void conjugate_gradient_test() {
   printf("x: %lf %lf\n", x[0], x[1]);
 
   for (int i = 0; i < 4; i++) {
+    printf(" %lf(%lf)", c[i], b[i]);
+  }
+  printf("\n");
+
+  // Test Case 2
+  a = SparseMatrix(1, 2);
+  a.set_element(0, 0, 1.0);
+  a.set_element(0, 1, 2.0);
+
+  b.resize(1);
+  b[0] = 3.0;
+
+  x[0] = x[1] = 0.0;
+
+  Math::conjugate_gradient(a, &b[0], 1, &x[0]);
+
+  c.resize(1);
+  a.multiply_column(&x[0], &c[0]);
+
+  printf("x: %lf %lf\n", x[0], x[1]);
+
+  for (int i = 0; i < 1; i++) {
     printf(" %lf(%lf)", c[i], b[i]);
   }
   printf("\n");
