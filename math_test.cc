@@ -55,7 +55,9 @@ void conjugate_gradient_test() {
   b.resize(1);
   b[0] = 3.0;
 
-  x[0] = x[1] = 0.0;
+  // x[0] = x[1] = 0.0;
+  x[0] = 7.0;
+  x[1] = -3.0;
 
   Math::conjugate_gradient(a, &b[0], 1, &x[0]);
 

@@ -66,6 +66,11 @@ void Math::conjugate_gradient(
   // rs_old = r' * r
   double rs_old = inner_product(r, r, a_trans.get_num_rows());
 
+  if (sqrt(rs_old) < kEpsilon) {
+    printf("The initial solution is good.\n");
+    return;
+  }
+
   for (int iteration = 0;
        iteration < num_iterations && iteration < a_trans.get_num_rows();
        iteration++) {
@@ -97,6 +102,9 @@ void Math::conjugate_gradient(
 
     // rs_old = rs_new
     rs_old = rs_new;
+
+    /// DEBUG ///
+    printf("  rs_old = %.20lf\n", rs_old);
   }
 
   /// DEBUG ///
